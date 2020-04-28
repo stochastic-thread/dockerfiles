@@ -4,7 +4,9 @@ MAINTAINER Luigi Ballabio <luigi.ballabio@gmail.com>
 LABEL Description="Provide a building environment where the Boost C++ libraries are available"
 
 RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential wget libbz2-dev \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y g++-10 wget libbz2-dev \
+ && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10 \
+ && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10 \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
